@@ -1,0 +1,34 @@
+{
+  "name": "gltf_editor",
+  "version": "1.0.0",
+  "description": "its simple editor/viewer gltf models",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --mode development --open",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evilkuma/GLTF_Editor.git"
+  },
+  "author": "evilkuma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/evilkuma/GLTF_Editor/issues"
+  },
+  "homepage": "https://github.com/evilkuma/GLTF_Editor#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "three": "^0.111.0"
+  }
+}
