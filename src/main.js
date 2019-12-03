@@ -1,7 +1,9 @@
 
 import { DefaultScene } from './model/DefaultScene'
 import { OrbitControls } from './model/OrbitControls'
+import { GLTFLoader } from './model/GLTFLoader'
 import * as THREE from 'three'
+import dat from 'dat.gui'
 
 // remove borders
 const els = [ document.querySelector('html'), document.body ]
@@ -15,12 +17,36 @@ for(let el of els) {
 
 }
 
+const gui = new dat.GUI
 const three = new DefaultScene
 const controls = new OrbitControls(three.camera, three.renderer.domElement)
 
-const box = new THREE.Mesh(
-    new THREE.BoxGeometry(50, 50, 50),
-    new THREE.MeshPhongMaterial({ color: 'lightgreen' })
-)
+const SCOPE = {}
 
-three.scene.add(box)
+{
+    /**
+     * load GLTF by button
+     */
+
+    const file = document.createElement('input')
+    file.type = 'file'
+    const file_reader = new FileReader
+    const gltf_loader = new GLTFLoader
+    
+    file.onchange = e => file_reader.readAsText(e.path[0].files[0])
+    
+    file_reader.onload = e =>
+        gltf_loader.parse(e.target.result, undefined, res => {
+
+            const mesh = res.scene.children[0]
+
+            three.scene.add(mesh)
+
+        })
+    
+    SCOPE.load = () => file.click()
+
+}
+
+// add to gui
+gui.add(SCOPE, 'load')
